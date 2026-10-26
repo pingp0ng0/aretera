@@ -5,6 +5,19 @@ What and why: see `PRD_step*.md`. This file covers how to run it and what to wat
 ## Folders
 - Build/working folder: `C:\dev\bivi` (ASCII path; Gradle fails on Korean paths on Windows).
 - Mirror for browsing: `Documents\클로드\Vibecoding\백패킹어플` (sync after changes; never copy `env.json` there).
+- Git: `C:\dev\bivi` → private GitHub repo `https://github.com/pingp0ng0/aretera` (branch `main`).
+  Commit author pingpong. Sign-in uses Git Credential Manager device-code mode (`credential.gitHubAuthModes=device`,
+  repo-level) because the browser sign-in never reached GCM on this PC. GitHub may ask "Confirm access" (sudo) first.
+  Before every commit, check no `env.json` value is staged (`.gitignore` covers env.json, build/, supabase/.temp/).
+
+## Another PC (setup)
+1. Install Git, then Flutter, JDK 21 and Android SDK under an ASCII path (e.g. `C:\dev`) — see Toolchain below.
+2. `git clone https://github.com/pingp0ng0/aretera.git C:\dev\bivi` (sign in with the same GitHub account).
+3. Bring `env.json` over separately (password manager, never Git/chat); `env.example.json` lists the keys.
+4. `flutter pub get`, then `flutter test` and a release build as below.
+5. For Supabase work: install the CLI (`npm install --save-exact supabase@2.121.0` in its own folder, run the `.cmd`)
+   and `supabase login` once. Function secrets live on Supabase, not on the PC.
+6. Claude's local memory notes stay on the old PC; status lives in `PRD_step*.md` (implementation notes at the end).
 
 ## Toolchain (installed under C:\dev)
 - Flutter `C:\dev\flutter` · JDK 21 `C:\dev\jdk` · Android SDK `C:\dev\android`
