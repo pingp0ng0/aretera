@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bivi Badge Draft</title>
+<style>
+  :root { --bg: #f2f5f7; --ink: #17323a; }
+  body { margin: 0; padding: 16px; background: var(--bg); color: var(--ink);
+         font-family: "Malgun Gothic", system-ui, sans-serif; }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  p { margin: 0 0 16px; color: #4d6670; font-size: 13px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  figure { margin: 0; background: #fff; border-radius: 16px; padding: 12px; text-align: center; }
+  figure.dark { background: #121212; color: #e8ece9; }
+  figcaption { margin-top: 6px; font-size: 13px; font-weight: 700; }
+  img { width: 100%; height: auto; display: block; }
+  .small { display: flex; gap: 12px; align-items: center; justify-content: center; }
+  .small img { width: 48px; } .small img.m { width: 96px; }
+</style>
+</head>
+<body>
+<h1>Bivi 배지 로고 시안</h1>
+<p>원본 SVG 그대로 표시. 슬로건 LIGHT. STEADY. NO TRACE. · 가운데 장면은 테두리와 떨어진 아치형 창.</p>
+<div class="grid" id="grid"></div>
+<script>
+// "#sky" or "#dawn" shows only that option, large.
+const files = { sky: '1안 · 스카이 & 민트 (버터 바탕)', dawn: '2안 · 새벽 하늘 & 코랄 (라벤더 바탕)' };
+const only = location.hash.slice(1);
+const grid = document.getElementById('grid');
+for (const [key, name] of Object.entries(files)) {
+  if (only && only !== key) continue;
+  const src = `bivi_badge_${key}.svg?v=${Date.now()}`;
+  grid.insertAdjacentHTML('beforeend', `<figure><img src="${src}" alt=""><figcaption>${name}</figcaption></figure>`);
+  if (only) continue;
+  grid.insertAdjacentHTML('beforeend', `<figure class="dark"><img src="${src}" alt=""><figcaption>${name} — 앱 다크 배경</figcaption></figure>`);
+  grid.insertAdjacentHTML('beforeend', `<figure><div class="small"><img class="m" src="${src}" alt=""><img src="${src}" alt=""></div><figcaption>96px · 48px</figcaption></figure>`);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+name: bivi
+description: "Bivi(비비) — 백패커를 위한 올인원 베이스캠프 (MVP v1.0)"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # 상태 관리
+  flutter_riverpod: ^2.6.1
+
+  # 백엔드 (선택: --dart-define 으로 키를 주면 활성화, 없으면 로컬 시드 데이터로 동작)
+  supabase_flutter: ^2.8.0
+
+  # 지도 (Mapbox 래스터 타일 / 토큰이 없으면 OpenTopoMap 등고선 지형도로 폴백)
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  flutter_svg: ^2.0.17
+
+  # 위치 · 로컬 저장 · 네트워크
+  geolocator: ^13.0.2
+  shared_preferences: ^2.3.3
+  path_provider: ^2.1.5
+  http: ^1.2.2
+  url_launcher: ^6.3.1
+  file_picker: ^13.1.0
+  xml: ^7.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  image: ^4.12.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/mapbox-logo.svg
+    # design/bivi_badge_dawn.svg 를 렌더링한 앱 내 로고 (PRD_step4)
+    - assets/images/bivi_badge.png
+    # tool/import_campsites.dart 가 생성 (고캠핑 등록 야영장 + 국립공원 대피소)
+    - assets/data/campsites.json
+    # tool/import_blog_spots.dart 가 생성 (후기 기반 박지, 개인용)
+    - assets/data/blog_spots.json
+    # tool/extract_character_assets.dart 가 생성 (Bivi 캐릭터, PRD_step4)
+    - assets/character/
+
+# Launcher icons from the option-2 badge: `dart run flutter_launcher_icons` (PRD_step4).
+# Sources are rendered from design/bivi_badge_dawn.svg into assets_src/icon/.
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets_src/icon/icon_legacy.png"
+  adaptive_icon_background: "#E9ECFF"
+  adaptive_icon_foreground: "assets_src/icon/icon_foreground.png"
+  min_sdk_android: 21
